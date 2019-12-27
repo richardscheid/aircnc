@@ -1,17 +1,9 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const routes = require('./routes');
 
 const app = express();
 
 app.use(express.json());
-
-// req.query = Access to query params (like filters)
-// req.params = Acces to route params (like edit, delete)
-// req.body = Access to requisition body (like create, edit)
-
-app.put('/users/:id', (req, res) => {
-    return res.json(req.body);
-});
- 
+app.use(routes);
 app.listen(3030);
-
- 
