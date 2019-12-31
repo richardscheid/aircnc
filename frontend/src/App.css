@@ -14,7 +14,7 @@ html, body, #root {
 body {
   background: #000 url('./assets/background.jpg') no-repeat;
   background-size: cover;
-  -webkit-font-smothing: antialiased !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
 body, input, button {
@@ -40,5 +40,45 @@ body, input, button {
 }
 
 .content > p {
-   
+  font-size: 22px;
+  line-height: 30px;
+  margin-bottom: 30px;
 }
+
+.content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.content form label {
+  font-size: 14px;
+  color: #444;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.content form input {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  height: 45px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.content button.btn {
+  border: 0;
+  border-radius: 2px;
+  width: 100%;
+  height: 42px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #f05a5b;
+  color: #fff;
+  cursor: pointer;
+}
+
+ .content button.btn:hover {
+   background: #e14f50;
+ }
