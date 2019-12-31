@@ -19,6 +19,8 @@ function App() {
             type="email" 
             placeholder="Seu melhor e-mail"
           />
+
+          <button className="btn" type="submit">Entrar</button>
         </from>
       </div>
     </div>
