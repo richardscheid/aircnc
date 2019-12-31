@@ -1,42 +1,15 @@
-import React, {useState} from 'react';
-import api from './services/api';
-import logo from './assets/logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./assets/logo.svg";
+import Routes from './routes';
+import "./App.css";
 
 function App() {
-  const[email, setEmail] = useState('');
-
-  async function handleSummit(event) {
-    event.preventDefault();
-    console.log(email);
-    const response = await api.post('/sessions', { email });
-
-    const { _id } = response.data;
-
-    localStorage.setItem('user', _id);
-  }
-
   return (
     <div className="container">
-      <img src={logo} alt="AirCnC"/>
+      <img src={logo} alt="AirCnC" />
 
       <div className="content">
-        <p>
-          Ofereça <strong>spots</strong> para programadores e encontre <strong>talentos</strong> para a sua empresa.
-        </p>
-
-        <form onSubmit={handleSummit}>
-          <label htmlFor="email">E-mail *</label>
-          <input 
-            id="email"
-            type="email" 
-            placeholder="Seu melhor e-mail"
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-          />
-
-          <button className="btn" type="submit">Entrar</button>
-        </form>
+        <Routes />
       </div>
     </div>
   );
