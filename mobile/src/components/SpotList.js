@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  TouchableOpacity
-} from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 
 import api from '../services/api';
 
@@ -18,8 +11,6 @@ export default function SpotList({ tech }) {
       const response = await api.get('/spots', {
         params: { tech }
       });
-
-      console.log(response.data);
 
       setSpots(response.data);
     }
