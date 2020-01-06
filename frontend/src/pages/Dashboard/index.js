@@ -8,7 +8,10 @@ export default function Dashboard() {
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
-    const socket = socketio('http://localhost:3030');
+    const user_id = localStorage.getItem('user');
+    const socket = socketio('http://localhost:3030', {
+      query: { user_id }
+    });
   }, []);
 
   useEffect(() => {
@@ -30,8 +33,8 @@ export default function Dashboard() {
         {spots.map(spot => (
           <li key={spot._id}>
             <header
-              style={{ backgroundImage: `url(${spot.thumbnail_url})` }}>
-            </header>
+              style={{ backgroundImage: `url(${spot.thumbnail_url})` }}
+            ></header>
             <strong>{spot.company}</strong>
             <span>{spot.price ? `R$${spot.price}/dia` : 'Free'}</span>
           </li>
