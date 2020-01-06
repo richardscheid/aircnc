@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import socketio from 'socket.io-client';
@@ -6,17 +6,19 @@ import './styles.css';
 
 export default function Dashboard() {
   const [spots, setSpots] = useState([]);
+  const [ requests, setRequests] = useState([]);
+
+  const user_id = localStorage.getItem('user');
+
+  const socket = useMemo(() => socketio('http://localhost:3030', {
+    query: { user_id }
+  }), [user_id]);
 
   useEffect(() => {
-    const user_id = localStorage.getItem('user');
-    const socket = socketio('http://localhost:3030', {
-      query: { user_id }
-    });
-
     socket.on('booking_request', data => {
-      console.log(data);
-    })
-  }, []);
+      setRequests([...requests, data]);
+    });
+  }, [requests, socket]);
 
   useEffect(() => {
     async function loadSpots() {
@@ -33,6 +35,17 @@ export default function Dashboard() {
 
   return (
     <>
+      <ul className='notifications'>
+        {requests.map(request => (
+          <li key={request._id}>
+            <p>
+              <strong>{request.user.email}</strong> is requesting a booking on <strong>{request.spot.company}</strong> for the date <strong>{request.spot.date}</strong>
+            </p>
+            <button className='accept'>Accept</button>
+            <button className='reject'>Reject</button>
+          </li>
+        ))}
+      </ul>
       <ul className='spot-list'>
         {spots.map(spot => (
           <li key={spot._id}>
@@ -40,7 +53,7 @@ export default function Dashboard() {
               style={{ backgroundImage: `url(${spot.thumbnail_url})` }}
             ></header>
             <strong>{spot.company}</strong>
-            <span>{spot.price ? `R$${spot.price}/dia` : 'Free'}</span>
+            <span>{spot.price ? `R$${spot.price}/day` : 'Free'}</span>
           </li>
         ))}
       </ul>
