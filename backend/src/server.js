@@ -6,19 +6,20 @@ const path = require('path');
 const http = require('http');
 const scoketio = require('socket.io');
 
+mongoose.connect('mongodb+srv://onmistack:onmistack@cluster0-mzlt4.mongodb.net/aircnc?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }
+);
+
 const app = express();
 const server = http.Server(app);
 const io = scoketio(server);
 
-mongoose.connect('mongodb+srv://onmistack:onmistack@cluster0-mzlt4.mongodb.net/aircnc?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
-
 const connectedUsers = {};
 
-io.on('connection', socket => {
+io.on('connection', (socket) => {
   const { user_id } = socket.handshake.query;
 
   connectedUsers[user_id] = socket.id;
@@ -28,7 +29,7 @@ app.use((req, res, next) => {
   req.io = io;
   req.connectedUsers = connectedUsers;
 
-  return next;
+  return next();
 });
 
 app.use(cors());
