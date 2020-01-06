@@ -6,7 +6,7 @@ export default function Login({ history }) {
 
   async function handleSummit(event) {
     event.preventDefault();
-    console.log(email);
+    
     const response = await api.post("/sessions", { email });
 
     const { _id } = response.data;

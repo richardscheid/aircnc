@@ -21,8 +21,6 @@ module.exports = {
       return res.status(400).json({ error: "User does not exists!" });
     }
 
-    console.log('passou aqui');
-
     const spot = await Spot.create({
       user: user_id,
       thumbnail: filename,
