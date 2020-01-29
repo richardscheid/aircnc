@@ -3,8 +3,10 @@
 </p>
 
 <p align="center">
-  Air Coffee &amp; Code, book spots for software engineers.
+  Air Coffee &amp; Code, connecting companies and software engineers.
   <br/>
+  <br/>
+
   <img src="dashboard.png" alt="project dashboard"/>
 
   >This is a study project only and has no involvement with the Airbnb brand.
