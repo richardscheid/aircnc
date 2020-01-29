@@ -65,13 +65,13 @@ export default function Dashboard() {
               style={{ backgroundImage: `url(${spot.thumbnail_url})` }}
             ></header>
             <strong>{spot.company}</strong>
-            <span>{spot.price ? `R$${spot.price}/day` : 'Free'}</span>
+            <span>{spot.price ? `$${spot.price}/day` : 'Free'}</span>
           </li>
         ))}
       </ul>
 
       <Link to='/new'>
-        <button className='btn'>Cadastrar novo spot</button>
+        <button className='btn'>New Spot</button>
       </Link>
     </>
   );
