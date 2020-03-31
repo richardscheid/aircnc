@@ -38,4 +38,4 @@
   - \* [check package.json](/mobile/package.json)  
 
 ## License
-[MIT License](https://github.com/daltonmenezes/aircnc/blob/master/LICENSE)
+[MIT License](https://github.com/richardsheid/aircnc/blob/master/LICENSE)
