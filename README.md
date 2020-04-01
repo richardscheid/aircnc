@@ -30,7 +30,7 @@
   - Multer
   - \* [check package.json](/backend/package.json)
   
- - **Mobile**
+- **Mobile**
   - React Native
   - Expo
   - Socket.io
